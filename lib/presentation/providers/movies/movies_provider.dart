@@ -6,7 +6,7 @@ import 'package:cinemapedia/presentation/providers/movies/movies_repository_prov
 final nowPlayingMoviesProvider =
     StateNotifierProvider<MoviesNotifier, List<Movie>>(
   (ref) {
-    final fetchMoreMovies = ref.watch(movieRepositoryProvider).getNowPlaying();
+    final fetchMoreMovies = ref.watch(movieRepositoryProvider).getNowPlaying;
     return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
   },
 );
@@ -17,9 +17,9 @@ typedef MovieCallback = Future<List<Movie>> Function({int page});
 // Clase que controla al proveedor del estado
 class MoviesNotifier extends StateNotifier<List<Movie>> {
   int currentPage = 0;
-  late MovieCallback fetchMoreMovies;
+  MovieCallback fetchMoreMovies;
 
-  MoviesNotifier({required fetchMoreMovies}) : super([]);
+  MoviesNotifier({required this.fetchMoreMovies}) : super([]);
 
   Future<void> loadNextPage() async {
     currentPage++;
