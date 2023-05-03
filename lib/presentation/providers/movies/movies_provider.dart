@@ -6,16 +6,13 @@ import 'package:cinemapedia/presentation/providers/movies/movies_repository_prov
 final nowPlayingMoviesProvider =
     StateNotifierProvider<MoviesNotifier, List<Movie>>(
   (ref) {
-    // Referencia a la funcion getNowPlaying();
+    // Referencia a la funcion(Evento que dispara cambios en el STATE)
     final fetchMoreMovies = ref.watch(movieRepositoryProvider).getNowPlaying;
 
     // Instanciamos controlador de proveedor de estado
     return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
   },
 );
-
-// Definicion de la referencia a la funcion que va a recibir la clase que controla al proveedor del estado
-typedef MovieCallback = Future<List<Movie>> Function({int page});
 
 // Clase que controla al proveedor del estado
 class MoviesNotifier extends StateNotifier<List<Movie>> {
@@ -31,3 +28,6 @@ class MoviesNotifier extends StateNotifier<List<Movie>> {
     state = [...state, ...movies];
   }
 }
+
+// Definicion de la referencia a la funcion que va a recibir la clase que controla al proveedor del estado
+typedef MovieCallback = Future<List<Movie>> Function({int page});

@@ -1,7 +1,7 @@
+import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cinemapedia/presentation/widgets/widgets.dart';
-import 'package:cinemapedia/presentation/providers/movies/movies_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   static const name = 'home-screen';
@@ -35,7 +35,9 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    // REF: Un objeto que permite que los widgets interactúen con los proveedores.
+    // final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final moviesSlideshow = ref.watch(moviesSlideshowProvider);
 
     return Column(
       children: [
@@ -43,7 +45,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
         const CustomAppbar(),
 
         // Movies SlideShow
-        MoviesSlideshow(movies: nowPlayingMovies)
+        MoviesSlideshow(movies: moviesSlideshow)
       ],
     );
   }
