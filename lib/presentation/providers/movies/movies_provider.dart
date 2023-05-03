@@ -6,7 +6,10 @@ import 'package:cinemapedia/presentation/providers/movies/movies_repository_prov
 final nowPlayingMoviesProvider =
     StateNotifierProvider<MoviesNotifier, List<Movie>>(
   (ref) {
+    // Referencia a la funcion getNowPlaying();
     final fetchMoreMovies = ref.watch(movieRepositoryProvider).getNowPlaying;
+
+    // Instanciamos controlador de proveedor de estado
     return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
   },
 );
