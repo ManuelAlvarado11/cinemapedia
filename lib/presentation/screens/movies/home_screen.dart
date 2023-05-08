@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import 'package:cinemapedia/presentation/providers/providers.dart';
+import 'package:cinemapedia/presentation/screens/screens.dart';
+import 'package:cinemapedia/presentation/widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   static const name = 'home-screen';
@@ -37,7 +38,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   @override
   Widget build(BuildContext context) {
     // REF: Un objeto que permite que los widgets interactúen con los proveedores.
-    // final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final moviesSlideshow = ref.watch(moviesSlideshowProvider);
 
     return Column(
@@ -46,7 +47,14 @@ class _HomeViewState extends ConsumerState<_HomeView> {
         const CustomAppbar(),
 
         // Movies SlideShow
-        MoviesSlideshow(movies: moviesSlideshow)
+        MoviesSlideshow(movies: moviesSlideshow),
+
+        // Horizontal ListView
+        MovieHorizontalListview(
+          movies: nowPlayingMovies,
+          title: 'En cines',
+          subTitle: 'Lunes 8 Mayo',
+        )
       ],
     );
   }
