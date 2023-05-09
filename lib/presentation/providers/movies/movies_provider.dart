@@ -2,14 +2,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:cinemapedia/presentation/providers/movies/movies_repository_provider.dart';
 
-// Definicion del proveedor del estado
+// GET NOWPLAYING
 final nowPlayingMoviesProvider =
     StateNotifierProvider<MoviesNotifier, List<Movie>>(
   (ref) {
-    // Referencia a la funcion(Evento que dispara cambios en el STATE)
     final fetchMoreMovies = ref.watch(movieRepositoryProvider).getNowPlaying;
+    return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+  },
+);
 
-    // Instanciamos controlador de proveedor de estado
+// GET POPULAR
+final popularMoviesProvider =
+    StateNotifierProvider<MoviesNotifier, List<Movie>>(
+  (ref) {
+    final fetchMoreMovies = ref.watch(movieRepositoryProvider).getPopular;
     return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
   },
 );

@@ -31,15 +31,17 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   void initState() {
     super.initState();
 
-    // Hacemos la peticion y cargamos las peliculas iniciales
+    // PROVIDERS (OBTENER VALOR)
     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
+    ref.read(popularMoviesProvider.notifier).loadNextPage();
   }
 
   @override
   Widget build(BuildContext context) {
-    // REF: Un objeto que permite que los widgets interactúen con los proveedores.
-    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    // SUBSCRIBIRSE A CAMBIOS DE PROVIDERS (VALOR)
     final moviesSlideshow = ref.watch(moviesSlideshowProvider);
+    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final popularMovies = ref.watch(popularMoviesProvider);
 
     return CustomScrollView(
       slivers: [
@@ -69,13 +71,13 @@ class _HomeViewState extends ConsumerState<_HomeView> {
               ),
               const SizedBox(height: 10),
 
-              // Proximamente
+              // Populares
               MovieHorizontalListview(
-                movies: nowPlayingMovies,
-                title: 'Proximamente',
+                movies: popularMovies,
+                title: 'Populares',
                 subTitle: 'Lunes 20',
                 loadNextPage: () =>
-                    ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+                    ref.read(popularMoviesProvider.notifier).loadNextPage(),
               ),
               const SizedBox(height: 10),
             ],
