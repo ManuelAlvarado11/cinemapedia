@@ -274,7 +274,16 @@ Nota: Sera const cuando la clase a instanciar asi lo defina
 ° ListView() --> Para una cantidad pequeña de elementos determinada y no tan pesados.
 ListView.builder() ---> Para una cantidad grande de elementos no determinada.
 
+° ScrollController --> Al agregar el evento addListener para escuchar cambios en el scroll, tambiem agregar el evento dispose para dejar de escucharlo al salir de la pantalla
+
 ° DecoratedBox ----> Es un widget que dibuja una caja que sera decorada
 BoxDecoration ---> Es una clase que decora una caja. Ej (DecoratedBox, Container .....)
 
 ° SizedBox -----> Crea un cuadro de tamaño fijo
+
+° persona!.nombre ------> Asume que persona no es nula, si llega a ser nula se genera una excepcion
+persona?.nombre ------> Verifica si persona es nula, si llega a ser nula pues devuelve un nulo sin generar excepcion
+
+° REF: Un objeto que permite que los widgets interactúen con los proveedores.
+ref.read() ----> Se utiliza para obtener el valor actual de un proveedor de manera sincrónica. Se usa cuando se este dentro de funciones o callback.
+ref.wath() ----> Se utiliza para suscribirse a los cambios en un proveedor y obtener su valor de forma reactiva.
