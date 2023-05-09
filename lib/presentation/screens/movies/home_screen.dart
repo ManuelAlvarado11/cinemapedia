@@ -34,6 +34,8 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     // PROVIDERS (OBTENER VALOR)
     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
     ref.read(popularMoviesProvider.notifier).loadNextPage();
+    ref.read(upcomingMoviesProvider.notifier).loadNextPage();
+    ref.read(topRatedMoviesProvider.notifier).loadNextPage();
   }
 
   @override
@@ -42,6 +44,8 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     final moviesSlideshow = ref.watch(moviesSlideshowProvider);
     final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
     final popularMovies = ref.watch(popularMoviesProvider);
+    final upcomingMovies = ref.watch(upcomingMoviesProvider);
+    final topRatedMovies = ref.watch(topRatedMoviesProvider);
 
     return CustomScrollView(
       slivers: [
@@ -69,17 +73,33 @@ class _HomeViewState extends ConsumerState<_HomeView> {
                 loadNextPage: () =>
                     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
               ),
-              const SizedBox(height: 10),
+
+              // Mejor valoradas
+              MovieHorizontalListview(
+                movies: topRatedMovies,
+                title: 'Mejor valoradas',
+                subTitle: 'Lunes 23',
+                loadNextPage: () =>
+                    ref.read(topRatedMoviesProvider.notifier).loadNextPage(),
+              ),
 
               // Populares
               MovieHorizontalListview(
                 movies: popularMovies,
                 title: 'Populares',
-                subTitle: 'Lunes 20',
+                subTitle: 'Lunes 21',
                 loadNextPage: () =>
                     ref.read(popularMoviesProvider.notifier).loadNextPage(),
               ),
-              const SizedBox(height: 10),
+
+              // Proximamente
+              MovieHorizontalListview(
+                movies: upcomingMovies,
+                title: 'Proximamente',
+                subTitle: 'Lunes 22',
+                loadNextPage: () =>
+                    ref.read(upcomingMoviesProvider.notifier).loadNextPage(),
+              ),
             ],
           );
         }, childCount: 1)),

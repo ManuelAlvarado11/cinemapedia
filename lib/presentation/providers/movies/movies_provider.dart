@@ -20,6 +20,24 @@ final popularMoviesProvider =
   },
 );
 
+// GET UPCOMING
+final upcomingMoviesProvider =
+    StateNotifierProvider<MoviesNotifier, List<Movie>>(
+  (ref) {
+    final fetchMoreMovies = ref.watch(movieRepositoryProvider).getUpcoming;
+    return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+  },
+);
+
+// GET TOPRATED
+final topRatedMoviesProvider =
+    StateNotifierProvider<MoviesNotifier, List<Movie>>(
+  (ref) {
+    final fetchMoreMovies = ref.watch(movieRepositoryProvider).getTopRated;
+    return MoviesNotifier(fetchMoreMovies: fetchMoreMovies);
+  },
+);
+
 // Clase que controla al proveedor del estado
 class MoviesNotifier extends StateNotifier<List<Movie>> {
   int currentPage = 0;
