@@ -38,6 +38,10 @@ final topRatedMoviesProvider =
   },
 );
 
+// *********************************************************************
+// Definicion de la referencia a la funcion que va a recibir la clase que controla al proveedor del estado
+typedef MovieCallback = Future<List<Movie>> Function({int page});
+
 // Clase que controla al proveedor del estado
 class MoviesNotifier extends StateNotifier<List<Movie>> {
   int currentPage = 0;
@@ -55,6 +59,3 @@ class MoviesNotifier extends StateNotifier<List<Movie>> {
     isLoading = false;
   }
 }
-
-// Definicion de la referencia a la funcion que va a recibir la clase que controla al proveedor del estado
-typedef MovieCallback = Future<List<Movie>> Function({int page});
