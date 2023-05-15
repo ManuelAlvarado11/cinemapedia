@@ -287,3 +287,5 @@ persona?.nombre ------> Verifica si persona es nula, si llega a ser nula pues de
 ° REF: Un objeto que permite que los widgets interactúen con los proveedores.
 ref.read() ----> Se utiliza para obtener el valor actual de un proveedor de manera sincrónica. Se usa cuando se este dentro de funciones o callback.
 ref.wath() ----> Se utiliza para suscribirse a los cambios en un proveedor y obtener su valor de forma reactiva.
+
+° Slivers ---> Puede usar Slivers para lograr efectos de desplazamiento personalizados, como el desplazamiento elástico.
