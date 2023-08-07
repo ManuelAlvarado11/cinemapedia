@@ -284,8 +284,18 @@ BoxDecoration ---> Es una clase que decora una caja. Ej (DecoratedBox, Container
 ° persona!.nombre ------> Asume que persona no es nula, si llega a ser nula se genera una excepcion
 persona?.nombre ------> Verifica si persona es nula, si llega a ser nula pues devuelve un nulo sin generar excepcion
 
-° REF: Un objeto que permite que los widgets interactúen con los proveedores.
-ref.read() ----> Se utiliza para obtener el valor actual de un proveedor de manera sincrónica. Se usa cuando se este dentro de funciones o callback.
+° REF: Un objeto que permite que los widgets interactúen con los Providers.
+ref.read() ----> Se utiliza para obtener el valor actual de un proveedor de manera sincrónica. Se usa cuando se este dentro de funciones o son callback.
 ref.wath() ----> Se utiliza para suscribirse a los cambios en un proveedor y obtener su valor de forma reactiva.
 
 ° Slivers ---> Puede usar Slivers para lograr efectos de desplazamiento personalizados, como el desplazamiento elástico.
+
+° T ------> Es un tipo de dato generico. Ej -> Future<void> setLocalStorage<T>(String key, T value);
+
+## GESTORES DE ESTADO
+
+| Provider                                                                     | Riverpod                                          | BLOC |
+| ---------------------------------------------------------------------------- | ------------------------------------------------- | ---- |
+| Usa la clase ChangeNotifier para notificar cambios en el state a los widgets | Usa la clase StateNotifier para gestior el estate |
+| Actualiza los datos atraves de notifyListeners()                             | Actualiza los datos automaticamente               |
+|                                                                              |                                                   |
